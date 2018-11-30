@@ -4,9 +4,4 @@ class Player extends GameObject
     {
         super(game, body, options);
     }
-
-    getPosition()
-    {
-        return new Vector(this.body.position[0], this.body.position[1]);
-    }
 }
