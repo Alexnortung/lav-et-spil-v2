@@ -1,6 +1,7 @@
 class Game {
   constructor()
   {
+    this._hasDrawer = false;
     const timestep = 1 / 60;
 
     // Inititalizes the world
@@ -102,5 +103,11 @@ class Game {
         return p2.Body.DYNAMIC;
         break;
     }
+  }
+
+  addDrawer(drawer){
+    this._hasDrawer = true;
+    this.drawer = drawer;
+
   }
 }
