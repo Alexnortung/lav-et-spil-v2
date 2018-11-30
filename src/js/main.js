@@ -73,7 +73,7 @@ function loadTileMap() {
 
 function preload() {
   //load tilemap
-  tileImg = loadTileMap();
+  //tileImg = loadTileMap();
 
   //load assets
 }

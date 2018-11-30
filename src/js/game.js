@@ -9,7 +9,7 @@ class Game {
       gravity: [0, -9.82],
     });
 
-    /*
+    
     var testBody = this.createBoxBody({
       width: 1,
       height: 1,
@@ -18,7 +18,9 @@ class Game {
       posy: 10,
       mass: 10,
       bodyType: 0,
-    });*/
+    });
+
+    console.log(testBody);
     
     // Creating a ground for the whole game
     var groundShape = new p2.Plane({
