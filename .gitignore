@@ -59,11 +59,7 @@ typings/
 
 # next.js build output
 .next
-<<<<<<< HEAD
 
-
-# build folder
 build/
-=======
+
 *.code-workspace
->>>>>>> f2d2415f3357b97de204104c3bab23b469756f4f
