@@ -11,7 +11,10 @@ function setup() {
   const drawer = new Drawer(game);
 
   const player = new Player(game, game.createBoxBody({width: 2, height: 2, posx: 5, posy: 5}));
-  game.setPlayer(player);
+  //game.setPlayer(player);
+  player.addForce({
+    vector: [5, 5],
+  });
 
 
   handleMapFile(loadTileMapJSON(), drawer);

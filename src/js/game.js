@@ -14,7 +14,7 @@ class Game {
       gravity: [0, -9.82],
     });
 
-    /*
+
     var testBody = this.createBoxBody({
       width: 1,
       height: 1,
@@ -23,7 +23,9 @@ class Game {
       posy: 10,
       mass: 10,
       bodyType: 0,
-    });*/
+    });
+
+    let testGO = new GameObject(this, testBody);
 
     // Creating a ground for the whole game
     var groundShape = new p2.Plane({
@@ -37,7 +39,7 @@ class Game {
     // Setting the game init and fps cycle
     setInterval(()=>{
         this.world.step(timestep);
-        //console.log(testBody.velocity);
+        console.log(testGO.body.position);
     }, 1000 * timestep);
 
   }
