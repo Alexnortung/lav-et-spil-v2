@@ -5,7 +5,7 @@ const watch = require("gulp-concat");
 
 gulp.task("default", () => {
 
-  gulp.src("src/js/*.js")
+  gulp.src(["src/js/lib/*.js","src/js/*.js"])
   .pipe(concat("app.js"))
   .pipe(gulp.dest("build/"))
 });
