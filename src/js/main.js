@@ -26,8 +26,42 @@ function mousePressed() {
 function keyPressed()
 {
   // j = 74
-  
-  console.log(keyCode);
+  // i = 73
+  // k = 75
+  // l = 76
+
+  if(keyCode === 74 || keyCode === 37) // moving left
+  {
+    console.log("Pressing left");
+    game.player.addForce({
+      vector: [0,-1],
+    });
+  }
+  else if(keyCode === 73 || keyCode === 38) // moving up
+  {
+    console.log("Pressing up");
+    game.player.addForce({
+      vector: [1,0],
+    });
+  }
+  else if (keyCode === 76 || keyCode === 39) // moving right
+  {
+    console.log("Pressing right");
+    game.player.addForce({
+      vector: [0,1],
+    });
+  }
+  else if (keyCode === 75 || keyCode === 40) // moving down
+  {
+    console.log("Pressing down");
+    game.player.addForce({
+      vector: [-1,0],
+    });
+  }
+  else if (keyCode === 90) // shooting
+  {
+    console.log("Shooting");
+  }
 }
 
 function loadTileMap() {

@@ -104,4 +104,3 @@ class Game {
     }
   }
 }
-const game1 = new Game();
