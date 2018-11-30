@@ -1,5 +1,5 @@
-class Drawer {
+class Foreground {
   constructor() {
-
+    
   }
 }
