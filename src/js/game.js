@@ -31,7 +31,7 @@ class Game {
         console.log("Circle y position: " + testBody.position[1]);
         console.log("Circle angle: " + testBody.angle);
     }, 1000 * timestep);
-    
+
   }
 
   createBoxBody(options)
@@ -59,7 +59,7 @@ class Game {
 
     // gets the correct body type
     var bodyType = this.getBodyType(this.bodyType);
-    
+
     var body = new p2.Body({
       mass: this.mass,
       position: [this.posx, this.posy],
@@ -87,14 +87,14 @@ class Game {
       case 0:
         return p2.Body.DYNAMIC;
         break;
-    
+
       case 1:
         return p2.Body.STATIC;
         break;
-      
+
       case 2:
         return p2.Body.KINEMATIC;
-      
+
       default:
         return p2.Body.DYNAMIC;
         break;
