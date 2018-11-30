@@ -2,6 +2,10 @@ class Game {
   constructor()
   {
     this._hasDrawer = false;
+
+    this.gameObjects = [];
+
+
     const timestep = 1 / 60;
 
     // Inititalizes the world
@@ -19,7 +23,7 @@ class Game {
       mass: 10,
       bodyType: 0,
     });*/
-    
+
     // Creating a ground for the whole game
     var groundShape = new p2.Plane({
       position: [0,0],

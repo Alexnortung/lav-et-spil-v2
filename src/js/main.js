@@ -8,9 +8,8 @@ function setup() {
   game = new Game();
   const drawer = new Drawer(game);
 
-  //render background
-
-  //render foreground
+  const player = new Player(game, game.createBoxBody({width: 2, height: 2, posx: 5, posy: 5}));
+  game.setPlayer(player);
 
 
 }
