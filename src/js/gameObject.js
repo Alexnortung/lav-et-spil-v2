@@ -66,5 +66,16 @@ class GameObject{
     destroy(){
       return this.game.destroyGameObject(this.gameObjectId);
     }
+
+    set position(vector)
+    {
+      this.body.position[0] = vector.x;
+      this.body.position[1] = vector.y;
+    }
+
+    get position()
+    {
+        return new Vector(this.body.position[0], this.body.position[1]);
+    }
   }
   
