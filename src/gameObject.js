@@ -1,6 +1,7 @@
 class GameObject{
-    constructor(game, position, options){
-      this.position = position;
+    constructor(game, body, options){
+      this.game.world.addBody(body);
+      this.body = body;
       this.gameObjectId = game.getNewId();
   
       this.game = game;
