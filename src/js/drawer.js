@@ -27,7 +27,10 @@ class Drawer {
   }
 
   addParallaxBackground(img, z) {
-    {img: img, z: z}
+
+    const par = {img: img, z: z}
+
+    this.parallaxBackgrounds.push(par);
   }
 
   draw() {
@@ -46,6 +49,10 @@ class Drawer {
     }
 
     //draw background
+    for (var i = 0; i < this.backgrounds.length; i++) {
+      this.pg.image(this.backgrounds[i],0,0)
+    }
+
     //draw gameObjects (player, monsters, projectiles, etc.)
     //draw foreground
   }
