@@ -17,6 +17,7 @@ function setup() {
 
 function draw() {
 
+
 }
 
 function mousePressed() {
@@ -36,7 +37,7 @@ function preload() {
   //load assets
 }
 
-function handleMapFile(mapFileData) {
+function handleMapFile(mapFileData, drawer) {
   //create background
   const backgroundLayer = createGraphics();
 
@@ -45,28 +46,48 @@ function handleMapFile(mapFileData) {
 
   const backgroundLastLayer = 3;
 
-  for (let i = 0; i < backgroundLastLayer; i++) {
+  const tileset =mapFileData.tilesets[0];
+
+  for (let i = 0; i < mapFileData.layers.length; i++) {
     //background
-    for (let j = 0; j < mapFileData.layers.length; j++) {
-      const cLayer = mapFileData.layers[j];
-      for (let k = 0; k < cLayer.data.length; k++) {
-        // add tile to world
+    const cLayer = mapFileData.layers[j];
+    for (let k = 0; k < cLayer.data.length; k++) {
+      // add tile to world
 
 
-        // render image on background
-        // get tileset
+      // render image on background
+      // get tileset
 
-        cLayer.data[k]
+      const cData = cLayer.data[k];
 
-        image(tileImg, 0, 0)
+      const tilesetColumns = tileset.columns;
+
+      const mapWidth = mapFileData.width;
+
+
+      const tileWidth = tileset.tilewidth;
+      const tileHeight = tileset.tileheight;
+
+      let chosenLayer = backgroundLayer;
+
+      if (!(i <= backgroundLastLayer)) {
+        chosenLayer = foregroundLayer;
 
       }
+      chosenLayer.image(tileImg, //img
+        k % mapWidth, floor(k / mapWidth), //dx, dy
+        tileWidth, tileHeight, // dW, dH
+        (cData % tilesetColumns) * tileWidth, // sx
+        floor(cData / tilesetColumns) * tileWidth, // sy
+        tileWidth, tileHeight // sw, sh
+      )
+
     }
+
   }
 
-  for (var i = backgroundLastLayer + 1; i < mapFileData.layers.length; i++) {
-    //foreground
-    mapFileData.layers[i]
-  }
+  //add layers to drawer
+  drawer.addBackground(backgroundLayer);
+  drawer.addforeground(foregroundLayer);
 
 }
