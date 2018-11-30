@@ -24,7 +24,7 @@ class Game {
       bodyType: 0,
     });
 
-    console.log(testBody);
+    let testGO = new GameObject(this, testBody);
 
     // Creating a ground for the whole game
     var groundShape = new p2.Plane({
@@ -38,7 +38,7 @@ class Game {
     // Setting the game init and fps cycle
     setInterval(()=>{
         this.world.step(timestep);
-        //console.log(testBody.velocity);
+        console.log(testGO.body.position);
     }, 1000 * timestep);
 
   }

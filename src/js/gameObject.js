@@ -3,14 +3,14 @@ class GameObject{
       this.game = game;
       this.game.world.addBody(body);
       this.body = body;
-      this.gameObjectId = game.getNewId();
+      //this.gameObjectId = game.getNewId();
 
       game.gameObjects.push(this);
   
       if (typeof options === "object") {
-        typeof options.maxVelocityX === "number" ? this.maxVelocityX = options.maxVelocityX : this.maxVelocityX = 5;
+        typeof options.maxVelocityX === "number" ? this.maxVelocityX = options.maxVelocityX : this.maxVelocityX = 100;
       } else {
-        this.maxVelocityX = 5;
+        this.maxVelocityX = 100;
       }
   
     }
@@ -29,12 +29,9 @@ class GameObject{
 
       if(this.body.velocity[0] > this.maxVelocityX)
       {
+        console.log(this.body.velocity);
         this.body.velocity[0] = this.maxVelocityX;
       }
-    }
-  
-    setPosition(position){
-      this.position = position;
     }
   
     update(){
