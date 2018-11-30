@@ -2,6 +2,10 @@ class Game {
   constructor()
   {
     this._hasDrawer = false;
+
+    this.gameObjects = [];
+
+
     const timestep = 1 / 60;
 
     // Inititalizes the world
@@ -9,7 +13,7 @@ class Game {
       gravity: [0, -9.82],
     });
 
-    
+
     var testBody = this.createBoxBody({
       width: 1,
       height: 1,
@@ -21,7 +25,7 @@ class Game {
     });
 
     console.log(testBody);
-    
+
     // Creating a ground for the whole game
     var groundShape = new p2.Plane({
       position: [0,0],
