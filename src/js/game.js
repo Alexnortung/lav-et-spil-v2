@@ -31,7 +31,6 @@ class Game {
         console.log("Circle y position: " + circleBody.position[1]);
         console.log("Circle angle: " + circleBody.angle);
     }, 1000 * timeStep);
-    
+
   }
 }
-const game = new Game();
