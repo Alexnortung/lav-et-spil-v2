@@ -8,13 +8,29 @@ class GameObject{
       game.gameObjects.push(this);
   
       if (typeof options === "object") {
-        typeof options.isSolid === "boolean" ? this.isSolid = options.isSolid : this.isSolid = false;
-        typeof options.tags === "object" ? this.tags = options.tags : this.tags = [];
+        typeof options.maxVelocityX === "number" ? this.maxVelocityX = options.maxVelocityX : this.maxVelocityX = 5;
       } else {
-        this.isSolid = false;
-        this.tags = [];
+        this.maxVelocityX = 5;
       }
   
+    }
+
+    // options er en vector bestående af x, y
+    addForce(options)
+    {
+      var vector = [0,0];
+      if(typeof options === "object")
+      {
+        typeof options.vector === "object" ? vector = options.vector : vector = [0, 0];
+      }
+
+      var force = p2.vec2.fromValues(vector[0], vector[1]);
+      p2.vec2.add(this.body.force, this.body.force, force); // body.force += force
+
+      if(this.body.velocity[0] > this.maxVelocityX)
+      {
+        this.body.velocity[0] = this.maxVelocityX;
+      }
     }
   
     setPosition(position){

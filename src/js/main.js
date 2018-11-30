@@ -23,6 +23,13 @@ function mousePressed() {
 
 }
 
+function keyPressed()
+{
+  // j = 74
+  
+  console.log(keyCode);
+}
+
 function loadTileMap() {
   const tilemap = loadImage("assets/tilemap.png")
   return tilemap;

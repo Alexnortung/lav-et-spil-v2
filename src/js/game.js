@@ -8,28 +8,30 @@ class Game {
       gravity: [0, -9.82],
     });
 
-    var testBody = this.createBoxBody(/*{
-      width: 10,
-      height: 10,
+    /*
+    var testBody = this.createBoxBody({
+      width: 1,
+      height: 1,
       hasCollider: true,
       posx: 10,
       posy: 10,
       mass: 10,
       bodyType: 0,
-    }*/);
-
-    var groundShape = new p2.Plane();
+    });*/
+    
+    // Creating a ground for the whole game
+    var groundShape = new p2.Plane({
+      position: [0,0],
+    });
     var groundBody = new p2.Body();
     groundBody.addShape(groundShape);
-
-    this.world.addBody(testBody);
     this.world.addBody(groundBody);
+    //this.world.addBody(testBody);
 
+    // Setting the game init and fps cycle
     setInterval(()=>{
         this.world.step(timestep);
-        console.log("Circle x position: " + testBody.position[0]);
-        console.log("Circle y position: " + testBody.position[1]);
-        console.log("Circle angle: " + testBody.angle);
+        //console.log(testBody.velocity);
     }, 1000 * timestep);
 
   }
@@ -94,6 +96,7 @@ class Game {
 
       case 2:
         return p2.Body.KINEMATIC;
+        break;
 
       default:
         return p2.Body.DYNAMIC;
