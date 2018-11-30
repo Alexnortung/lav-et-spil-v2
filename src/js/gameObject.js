@@ -1,10 +1,10 @@
 class GameObject{
     constructor(game, body, options){
+      this.game = game;
       this.game.world.addBody(body);
       this.body = body;
       this.gameObjectId = game.getNewId();
-  
-      this.game = game;
+
       game.gameObjects.push(this);
   
       if (typeof options === "object") {
