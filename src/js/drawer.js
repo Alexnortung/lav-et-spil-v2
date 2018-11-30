@@ -54,7 +54,14 @@ class Drawer {
     }
 
     //draw gameObjects (player, monsters, projectiles, etc.)
+
+    this.pg.image(images.player.png, 300 - (playerPos.x * 32), 600 - (playerPos.y * 32));
+
     //draw foreground
+
+
+
+    image(this.pg,0,0)
   }
 
 }

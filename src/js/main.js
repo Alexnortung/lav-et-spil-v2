@@ -1,6 +1,8 @@
 let game;
 let canvas;
 let tileImg;
+let tilemapDataJSON;
+let images = {};
 
 function setup() {
   canvas = createCanvas(displayWidth, displayHeight);
@@ -10,6 +12,9 @@ function setup() {
 
   const player = new Player(game, game.createBoxBody({width: 2, height: 2, posx: 5, posy: 5}));
   game.setPlayer(player);
+
+
+  handleMapFile(loadTileMapJSON(), drawer);
 
 
 }
@@ -70,11 +75,20 @@ function loadTileMap() {
 
 }
 
+function loadTileMapJSON() {
+  const tilemapJSON = loadJSON("assets/tilemap.json");
+  return tilemapJSON;
+}
+
 function preload() {
   //load tilemap
   tileImg = loadTileMap();
 
   //load assets
+  tilemapDataJSON = loadTileMapJSON();
+
+  images.player = loadImage("assets/player.png");
+
 }
 
 function handleMapFile(mapFileData, drawer) {
@@ -128,6 +142,6 @@ function handleMapFile(mapFileData, drawer) {
 
   //add layers to drawer
   drawer.addBackground(backgroundLayer);
-  drawer.addforeground(foregroundLayer);
+  drawer.addForeground(foregroundLayer);
 
 }

@@ -2,6 +2,7 @@ class Game {
   constructor()
   {
     this._hasDrawer = false;
+    this._hasPlayer = false;
 
     this.gameObjects = [];
 
@@ -113,5 +114,10 @@ class Game {
     this._hasDrawer = true;
     this.drawer = drawer;
 
+  }
+
+  setPlayer(player){
+    this.player = player;
+    this._hasPlayer = true;
   }
 }
