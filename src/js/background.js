@@ -1,5 +1,5 @@
 class Background {
-  constructor(pos) {
+  constructor(pos, tileset, tilesArray) {
 
   }
 
