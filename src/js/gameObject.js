@@ -6,13 +6,13 @@ class GameObject{
       //this.gameObjectId = game.getNewId();
 
       game.gameObjects.push(this);
-  
+
       if (typeof options === "object") {
         typeof options.maxVelocityX === "number" ? this.maxVelocityX = options.maxVelocityX : this.maxVelocityX = 100;
       } else {
         this.maxVelocityX = 100;
       }
-  
+
     }
 
     // options er en vector bestående af x, y
@@ -33,21 +33,21 @@ class GameObject{
         this.body.velocity[0] = this.maxVelocityX;
       }
     }
-  
+
     update(){
-  
+
     }
-  
+
     get centerPosition(){
       const center = this.position.add(this.size.divide(2));
       return center;
     }
-  
+
     set centerPosition(position){
       const newPos = position.subtract(this.size.divide(2));
       this.position = newPos;
     }
-  
+
     hasTag(tag){
       const tagsToLower = this.tags.map(tagInArr =>{
         if (typeof tagInArr === "string") {
@@ -59,7 +59,7 @@ class GameObject{
       });
       return tagsToLower.indexOf(tag.toLowerCase()) != -1
     }
-  
+
     destroy(){
       return this.game.destroyGameObject(this.gameObjectId);
     }
@@ -74,5 +74,25 @@ class GameObject{
     {
         return new Vector(this.body.position[0], this.body.position[1]);
     }
+
+    isGrounded(){
+      const from = this.position;
+      const to = from.add(new Vector(0,1))
+      const rayClosest = new p2.Ray({
+        mode: p2.Ray.CLOSEST,
+
+        from: from.toArray(),
+        to: to.toArray()
+      });
+
+      const res = new p2.RaycastResult();
+
+      this.game.world.raycast(res, rayClosest);
+
+      var hitPoint = p2.vec2.create();
+      res.getHitPoint(hitPoint, rayClosest);
+
+      return hitPoint;
+
+    }
   }
-  

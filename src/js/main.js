@@ -4,15 +4,22 @@ let tileImg;
 let tilemapDataJSON;
 let images = {};
 
+const collisionGroups = {
+  OTHER: Math.pow(2,0),
+  PLAYER: Math.pow(2,1),
+  GROUND: Math.pow(2,2)
+}
+
 function setup() {
-  canvas = createCanvas(displayWidth, displayHeight);
+  canvas = createCanvas(window.innerWidth, window.innerHeight);
+
   //setup game
   game = new Game();
   const drawer = new Drawer(game);
 
   game.addDrawer(drawer);
 
-  const player = new Player(game, game.createBoxBody({width: 1, height: 1, posx: 5, posy: 5}));
+  const player = new Player(game, game.createBoxBody({width: 1, height: 1, posx: 5, posy: 5, collisionGroup: collisionGroups.PLAYER, collisionMask: collisionGroups.GROUND}));
   game.setPlayer(player);
 
   handleMapFile(tilemapDataJSON, drawer);

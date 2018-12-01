@@ -64,8 +64,8 @@ class Drawer {
 
 
     background(255);
-    // image(this.pg,(playerPos.x * 32) , (playerPos.y-1) * 32)
-    image(this.pg,(0) , 0)
+    image(this.pg,(width/2)-(playerPos.x * 32) , (height/2)-(playerPos.y) * 32)
+    // image(this.pg,(0) , 0)
     // console.log(playerPos);
 
   }

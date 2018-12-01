@@ -46,43 +46,48 @@ class Game {
 
   createBoxBody(options)
   {
+    let width = 1;
+    let height = 1;
+    let hasCollider = true;
+    let posx = 0;
+    let posy = 0;
+    let mass = 1;
+    let bodyTypeNum = 0;
+    let collisionGroup = collisionGroups.OTHER;
+    let collisionMask = collisionGroups.OTHER;
+
     if (typeof options === "object")
     {
-      typeof options.width === "number" ? this.width = options.width : this.width = 1;
-      typeof options.height === "number" ? this.height = options.height : this.height = 1;
-      typeof options.hasCollider === "number" ? this.hasCollider = options.hasCollider : this.hasCollider = true;
-      typeof options.posx === "number" ? this.posx = options.posx : this.posx = 0;
-      typeof options.posy === "number" ? this.posy = options.posy : this.posy = 0;
-      typeof options.mass === "number" ? this.mass = options.mass : this.mass = 1;
-      typeof options.bodyType === "number" ? this.bodyType = options.bodyType : this.bodyType = 0;
+      typeof options.width === "number" ? width = options.width : width = 1;
+      typeof options.height === "number" ? height = options.height : height = 1;
+      typeof options.hasCollider === "boolean" ? hasCollider = options.hasCollider : hasCollider = true;
+      typeof options.posx === "number" ? posx = options.posx : posx = 0;
+      typeof options.posy === "number" ? posy = options.posy : posy = 0;
+      typeof options.mass === "number" ? mass = options.mass : mass = 1;
+      typeof options.bodyType === "number" ? bodyTypeNum = options.bodyType : bodyTypeNum = 0;
+      typeof options.collisionGroup === "number" ? collisionGroup = options.collisionGroup : collisionGroup = collisionGroups.OTHER;
+      typeof options.collisionMask === "number" ? collisionMask = options.collisionMask : collisionMask = collisionGroups.OTHER;
     }
-    else
-    {
-      this.width = 1;
-      this.height = 1;
-      this.hasCollider = true;
-      this.posx = 0;
-      this.posy = 0;
-      this.mass = 1;
-      this.bodyType = 0;
-    }
+
+
 
     // gets the correct body type
-    var bodyType = this.getBodyType(this.bodyType);
+    bodyTypeNum = this.getBodyType(bodyTypeNum);
 
     var body = new p2.Body({
-      mass: this.mass,
-      position: [this.posx, this.posy],
-      type: bodyType,
+      mass: mass,
+      position: [posx, posy],
+      type: bodyTypeNum,
     });
     var collider = null;
 
     if(this.hasCollider)
     {
       collider = new p2.Box({
-        width: this.width,
-        height: this.height,
+        width: width,
+        height: height,
       });
+
 
       body.addShape(collider);
     }
