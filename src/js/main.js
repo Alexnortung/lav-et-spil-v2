@@ -45,24 +45,28 @@ function keyPressed()
 
   if(keyCode === 74 || keyCode === 37) // moving left
   {
-    console.log("Pressing left");
-    game.player.addForce({
-      vector: [300,0],
-    });
+    // console.log("Pressing left");
+    // game.player.addForce({
+    //   vector: [300,0],
+    // });
   }
   else if(keyCode === 73 || keyCode === 38) // moving up
   {
     console.log("Pressing up");
-    game.player.addForce({
-      vector: [0,-1000],
-    });
+    // console.log("player is grounded: ", game.player.isGrounded());
+    if (game.player.isGrounded()) {
+      game.player.addForce({
+        vector: [0,-500],
+      });
+
+    }
   }
   else if (keyCode === 76 || keyCode === 39) // moving right
   {
-    console.log("Pressing right");
-    game.player.addForce({
-      vector: [-300,0],
-    });
+    // console.log("Pressing right");
+    // game.player.addForce({
+    //   vector: [-300,0],
+    // });
   }
   else if (keyCode === 75 || keyCode === 40) // moving down
   {

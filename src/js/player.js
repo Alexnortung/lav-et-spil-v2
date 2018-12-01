@@ -4,4 +4,9 @@ class Player extends GameObject
     {
         super(game, body, options);
     }
+
+    moveRihght(){
+      
+
+    }
 }

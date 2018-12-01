@@ -40,6 +40,19 @@ class Game {
     setInterval(()=>{
         this.world.step(timestep);
         //console.log(testGO.body.position);
+
+        if ( keyIsDown(74) ||  keyIsDown(37)) {
+          //moving left
+          this.player.addForce({
+            vector: [300,0],
+          });
+        } else if (keyIsDown(76) || keyIsDown(39)) {
+          //moving right
+          this.player.addForce({
+            vector: [-300,0],
+          });
+        }
+
     }, 1000 * timestep);
 
   }

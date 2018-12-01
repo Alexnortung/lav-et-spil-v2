@@ -10,7 +10,7 @@ class GameObject{
       if (typeof options === "object") {
         typeof options.maxVelocityX === "number" ? this.maxVelocityX = options.maxVelocityX : this.maxVelocityX = 100;
       } else {
-        this.maxVelocityX = 100;
+        this.maxVelocityX = 1;
       }
 
     }
@@ -31,6 +31,8 @@ class GameObject{
       {
         console.log(this.body.velocity);
         this.body.velocity[0] = this.maxVelocityX;
+      } else if (this.body.velocity[0] < -this.maxVelocityX) {
+        this.body.velocity[0] = -this.maxVelocityX;
       }
     }
 
@@ -76,12 +78,13 @@ class GameObject{
     }
 
     isGrounded(){
-      const from = this.position;
-      const to = from.add(new Vector(0,1))
+      const start = this.position.add(new Vector(0,0));
+      const to = start.add(new Vector(0,0.5))
+      // console.log("from: ", start, "to: ", to);
       const rayClosest = new p2.Ray({
         mode: p2.Ray.CLOSEST,
 
-        from: from.toArray(),
+        from: start.toArray(),
         to: to.toArray()
       });
 
@@ -89,10 +92,12 @@ class GameObject{
 
       this.game.world.raycast(res, rayClosest);
 
-      var hitPoint = p2.vec2.create();
-      res.getHitPoint(hitPoint, rayClosest);
+      console.log(res);
 
-      return hitPoint;
+      // var hitPoint = p2.vec2.create();
+      // res.getHitPoint(hitPoint, rayClosest);
+
+      return res.body != null;
 
     }
   }
