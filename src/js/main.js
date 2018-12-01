@@ -19,7 +19,7 @@ function setup() {
 
   game.addDrawer(drawer);
 
-  const player = new Player(game, game.createBoxBody({width: 1, height: 1, posx: 5, posy: 5, collisionGroup: collisionGroups.PLAYER, collisionMask: collisionGroups.GROUND}));
+  const player = new Player(game, game.createBoxBody({width: 1, height: 1, posx: 5, posy: 5}));
   game.setPlayer(player);
 
   handleMapFile(tilemapDataJSON, drawer);

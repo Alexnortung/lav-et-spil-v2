@@ -53,8 +53,8 @@ class Game {
     let posy = 0;
     let mass = 1;
     let bodyTypeNum = 0;
-    let collisionGroup = collisionGroups.OTHER;
-    let collisionMask = collisionGroups.OTHER;
+    // let collisionGroup = collisionGroups.OTHER;
+    // let collisionMask = collisionGroups.OTHER;
 
     if (typeof options === "object")
     {
@@ -65,8 +65,8 @@ class Game {
       typeof options.posy === "number" ? posy = options.posy : posy = 0;
       typeof options.mass === "number" ? mass = options.mass : mass = 1;
       typeof options.bodyType === "number" ? bodyTypeNum = options.bodyType : bodyTypeNum = 0;
-      typeof options.collisionGroup === "number" ? collisionGroup = options.collisionGroup : collisionGroup = collisionGroups.OTHER;
-      typeof options.collisionMask === "number" ? collisionMask = options.collisionMask : collisionMask = collisionGroups.OTHER;
+      // typeof options.collisionGroup === "number" ? collisionGroup = options.collisionGroup : collisionGroup = collisionGroups.OTHER;
+      // typeof options.collisionMask === "number" ? collisionMask = options.collisionMask : collisionMask = collisionGroups.OTHER;
     }
 
 
