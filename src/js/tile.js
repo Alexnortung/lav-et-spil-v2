@@ -3,9 +3,9 @@ class Tile extends GameObject {
     //create body
     const body = new p2.Body({
       mass: 0,
-      position: [pos.x, pos.y]
+      position: [pos.x, pos.y],
+      type: game.getBodyType(1)
     });
-    super(game, body, options);
 
     let material = game.materials.defaultGroundMaterial;
     if (typeof options === "obejct") {
@@ -19,6 +19,7 @@ class Tile extends GameObject {
     });
 
     body.addShape(shape);
+    super(game, body, options);
 
 
     this.game = game;

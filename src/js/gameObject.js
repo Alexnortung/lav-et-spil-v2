@@ -92,7 +92,7 @@ class GameObject{
 
       this.game.world.raycast(res, rayClosest);
 
-      // console.log(res);
+      console.log(res);
 
       // var hitPoint = p2.vec2.create();
       // res.getHitPoint(hitPoint, rayClosest);

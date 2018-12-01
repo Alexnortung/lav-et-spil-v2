@@ -148,7 +148,9 @@ function handleMapFile(mapFileData, drawer) {
 
       }
       if (cData == 18 || cData == 11) {
-        new Tile(game, new Vector(game, (k % mapWidth), floor(k / mapWidth)));
+        let position = new Vector((k % mapWidth), floor(k / mapWidth));
+        console.log(position);
+        new Tile(game, position);
         // new GameObject(game, game.createBoxBody({posx:(k % mapWidth) , posy: floor(k / mapWidth) , bodyType: 1, mass:0}))
         console.log("created gameObj at: ", (k % mapWidth), floor(k / mapWidth) );
       }
