@@ -14,7 +14,7 @@ gulp.task("concatCSS", ()=> {
 
 gulp.task("concatJS", () => {
 
-  gulp.src(["src/js/lib/*.js","src/js/first/*.js","src/js/.js"])
+  gulp.src(["src/js/lib/*.js","src/js/first/*.js","src/js/*.js"])
   .pipe(sourcemaps.init())
   .pipe(concat("app.js"))
   .pipe(sourcemaps.write("./"))
