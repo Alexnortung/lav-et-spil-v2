@@ -15,12 +15,14 @@ function setup() {
 
   //setup game
   game = new Game();
+  const materials = new Materials(game);
+  game.setMaterials(materials);
   const drawer = new Drawer(game);
-
   game.addDrawer(drawer);
 
-  const player = new Player(game, game.createBoxBody({width: 1, height: 1, posx: 5, posy: 5}));
+  const player = new Player(game, game.createBoxBody({width: 1, height: 1, posx: 5, posy: 5, material: materials.playerMaterial}));
   game.setPlayer(player);
+
 
   handleMapFile(tilemapDataJSON, drawer);
 
@@ -146,7 +148,8 @@ function handleMapFile(mapFileData, drawer) {
 
       }
       if (cData == 18 || cData == 11) {
-        new GameObject(game, game.createBoxBody({posx:(k % mapWidth) , posy: floor(k / mapWidth) , bodyType: 1, mass:0}))
+        new Tile(game, new Vector(game, (k % mapWidth), floor(k / mapWidth)));
+        // new GameObject(game, game.createBoxBody({posx:(k % mapWidth) , posy: floor(k / mapWidth) , bodyType: 1, mass:0}))
         console.log("created gameObj at: ", (k % mapWidth), floor(k / mapWidth) );
       }
 

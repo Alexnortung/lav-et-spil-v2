@@ -29,7 +29,7 @@ class GameObject{
 
       if(this.body.velocity[0] > this.maxVelocityX)
       {
-        console.log(this.body.velocity);
+        // console.log(this.body.velocity);
         this.body.velocity[0] = this.maxVelocityX;
       } else if (this.body.velocity[0] < -this.maxVelocityX) {
         this.body.velocity[0] = -this.maxVelocityX;
@@ -92,7 +92,7 @@ class GameObject{
 
       this.game.world.raycast(res, rayClosest);
 
-      console.log(res);
+      // console.log(res);
 
       // var hitPoint = p2.vec2.create();
       // res.getHitPoint(hitPoint, rayClosest);

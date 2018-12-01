@@ -4,26 +4,23 @@ class Game {
     this._hasDrawer = false;
     this._hasPlayer = false;
 
+
     this.gameObjects = [];
 
 
     const timestep = 1 / 60;
+
+    this.tiles = [];
 
     // Inititalizes the world
     this.world = new p2.World ({
       gravity: [0, 9.82],
     });
 
+    // this.world.solver = new p2.GSSolver();
+    // this.world.solver.iterations = 60;
 
-    var testBody = this.createBoxBody({
-      width: 1,
-      height: 1,
-      hasCollider: true,
-      posx: 10,
-      posy: 10,
-      mass: 10,
-      bodyType: 0,
-    });
+
 
     // let testGO = new GameObject(this, testBody);
 
@@ -43,13 +40,15 @@ class Game {
 
         if ( keyIsDown(74) ||  keyIsDown(37)) {
           //moving left
+          console.log("left");
           this.player.addForce({
-            vector: [300,0],
+            vector: [-300,0],
           });
         } else if (keyIsDown(76) || keyIsDown(39)) {
           //moving right
+          console.log("right");
           this.player.addForce({
-            vector: [-300,0],
+            vector: [300,0],
           });
         }
 
@@ -66,6 +65,7 @@ class Game {
     let posy = 0;
     let mass = 1;
     let bodyTypeNum = 0;
+    let material = this.materials.defaultGroundMaterial;
     // let collisionGroup = collisionGroups.OTHER;
     // let collisionMask = collisionGroups.OTHER;
 
@@ -78,6 +78,7 @@ class Game {
       typeof options.posy === "number" ? posy = options.posy : posy = 0;
       typeof options.mass === "number" ? mass = options.mass : mass = 1;
       typeof options.bodyType === "number" ? bodyTypeNum = options.bodyType : bodyTypeNum = 0;
+      typeof options.material === "object" ? material = options.material : material = this.materials.defaultGroundMaterial;
       // typeof options.collisionGroup === "number" ? collisionGroup = options.collisionGroup : collisionGroup = collisionGroups.OTHER;
       // typeof options.collisionMask === "number" ? collisionMask = options.collisionMask : collisionMask = collisionGroups.OTHER;
     }
@@ -99,6 +100,7 @@ class Game {
       collider = new p2.Box({
         width: width,
         height: height,
+        material: material
       });
 
 
@@ -140,4 +142,13 @@ class Game {
     this.player = player;
     this._hasPlayer = true;
   }
+
+  setMaterials(materials){
+    this.materials = materials;
+  }
+
+  addTile(tile){
+    this.tiles.push(tile);
+  }
+
 }
