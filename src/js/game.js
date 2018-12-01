@@ -55,10 +55,13 @@ class Game {
     }, 1000 * timestep);
 
 
-    world.on("beginContact", (shapeA, shapeB, bodyA, bodyB, contactEquations) => {
-      if (shapeA | shapeB == this.materials.playerMaterial) {
-        console.log(contactEquations);
+    this.world.on("beginContact", (e) => {
+      // console.log(e.shapeA, e.shapeB, e.bodyA, e.bodyB, e.contactEquations);
+      if (e.shapeA.material | e.shapeB.material == this.materials.playerMaterial) {
+        console.log(e);
       }
+
+
 
     });
 
@@ -74,6 +77,7 @@ class Game {
     let mass = 1;
     let bodyTypeNum = 0;
     let material = this.materials.defaultGroundMaterial;
+    let fixedRotation = true;
     // let collisionGroup = collisionGroups.OTHER;
     // let collisionMask = collisionGroups.OTHER;
 
@@ -87,6 +91,7 @@ class Game {
       typeof options.mass === "number" ? mass = options.mass : mass = 1;
       typeof options.bodyType === "number" ? bodyTypeNum = options.bodyType : bodyTypeNum = 0;
       typeof options.material === "object" ? material = options.material : material = this.materials.defaultGroundMaterial;
+      typeof options.fixedRotation === "boolean" ? fixedRotation = options.fixedRotation : fixedRotation = true;
       // typeof options.collisionGroup === "number" ? collisionGroup = options.collisionGroup : collisionGroup = collisionGroups.OTHER;
       // typeof options.collisionMask === "number" ? collisionMask = options.collisionMask : collisionMask = collisionGroups.OTHER;
     }
@@ -100,6 +105,7 @@ class Game {
       mass: mass,
       position: [posx, posy],
       type: bodyTypeNum,
+      fixedRotation: fixedRotation,
     });
     var collider = null;
 
@@ -158,5 +164,42 @@ class Game {
   addTile(tile){
     this.tiles.push(tile);
   }
+
+  getTopTiles(){
+    const topTiles = [];
+
+    for (var i = 0; i < this.tiles.length; i++) {
+      let toptile = true;
+      for (var j = 0; j < this.tiles.length; j++) {
+        if (this.tiles[i].position.y == this.tiles[j].position.y - 1) {
+          //if tiles[i] is 1 below tiles[j]
+          //not top tile
+          toptile =false;
+          break;
+        }
+
+      }
+      if (toptile) {
+        topTiles.push(this.tiles[i]);
+      }
+
+    }
+    return topTiles;
+
+  }
+
+
+  setTopTiles(){
+    this._topTiles = this.getTopTiles();
+  }
+
+  get topTiles(){
+    if (typeof this.topTiles === "undefined" || this.topTiles === []) {
+      this.setTopTiles();
+    }
+
+    return this._topTiles;
+  }
+
 
 }

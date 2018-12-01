@@ -84,13 +84,13 @@ function keyPressed()
 }
 
 function loadTileMap() {
-  const tilemap = loadImage("assets/tilemap.png")
+  const tilemap = loadImage("assets/tilemap_v1.png")
   return tilemap;
 
 }
 
 function loadTileMapJSON() {
-  const tilemapJSON = loadJSON("assets/tilemap.json");
+  const tilemapJSON = loadJSON("assets/map_v1..json");
   return tilemapJSON;
 }
 
@@ -101,7 +101,7 @@ function preload() {
   //load assets
   tilemapDataJSON = loadTileMapJSON();
 
-  images.player = loadImage("assets/player.png");
+  images.player = loadImage("assets/Guy1_v2.png");
 
 }
 
@@ -147,7 +147,7 @@ function handleMapFile(mapFileData, drawer) {
         chosenLayer = foregroundLayer;
 
       }
-      if (cData == 18 || cData == 11) {
+      if (cData +1 == 15) {
         let position = new Vector((k % mapWidth), floor(k / mapWidth));
         console.log(position);
         new Tile(game, position);

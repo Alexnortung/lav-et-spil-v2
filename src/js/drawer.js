@@ -62,9 +62,12 @@ class Drawer {
 
     //draw foreground
 
+    let zoomScale = 2;
 
     background(255);
-    image(this.pg,(width/2)-(playerPos.x * 32) , (height/2)-(playerPos.y) * 32)
+    // image(this.pg,((width/2)-(playerPos.x * 32)) * zoomScale , ((height/2)-(playerPos.y) * 32) * zoomScale, this.pg.width * zoomScale, this.pg.height* zoomScale)
+    image(this.pg,((width/2)-(playerPos.x * 32))  , ((height/2)-(playerPos.y) * 32) , this.pg.width , this.pg.height)
+
     // image(this.pg,(0) , 0)
     // console.log(playerPos);
 
