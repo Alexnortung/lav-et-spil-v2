@@ -54,6 +54,14 @@ class Game {
 
     }, 1000 * timestep);
 
+
+    world.on("beginContact", (shapeA, shapeB, bodyA, bodyB, contactEquations) => {
+      if (shapeA | shapeB == this.materials.playerMaterial) {
+        console.log(contactEquations);
+      }
+
+    });
+
   }
 
   createBoxBody(options)
