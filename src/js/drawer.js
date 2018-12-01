@@ -8,7 +8,7 @@ class Drawer {
     this._hasForeground = false;
     this._hasBackground = false;
 
-    this.pg = createGraphics();
+    this.pg = createGraphics(1920, 1080);
 
   }
 
@@ -34,8 +34,11 @@ class Drawer {
   }
 
   draw() {
+
+    this.pg.background(255)
     //get playerpos
-    const playerPos = this.game.player.pos
+    const playerPos = this.game.player.position;
+    const drawnPlayerPos = playerPos.add(new Vector(0,0))
     //draw static
     for (var i = 0; i < this.statics.length; i++) {
       this.pg.image(this.statics[i], 0 , 0);
@@ -55,13 +58,16 @@ class Drawer {
 
     //draw gameObjects (player, monsters, projectiles, etc.)
 
-    this.pg.image(images.player.png, 300 - (playerPos.x * 32), 600 - (playerPos.y * 32));
+    this.pg.image(images.player,  (drawnPlayerPos.x * 32),(drawnPlayerPos.y * 32));
 
     //draw foreground
 
 
+    background(255);
+    // image(this.pg,(playerPos.x * 32) , (playerPos.y-1) * 32)
+    image(this.pg,(0) , 0)
+    // console.log(playerPos);
 
-    image(this.pg,0,0)
   }
 
 }

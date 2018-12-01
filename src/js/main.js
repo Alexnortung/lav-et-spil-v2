@@ -10,20 +10,18 @@ function setup() {
   game = new Game();
   const drawer = new Drawer(game);
 
-  const player = new Player(game, game.createBoxBody({width: 2, height: 2, posx: 5, posy: 5}));
-  //game.setPlayer(player);
-  player.addForce({
-    vector: [5, 5],
-  });
+  game.addDrawer(drawer);
 
+  const player = new Player(game, game.createBoxBody({width: 1, height: 1, posx: 5, posy: 5}));
+  game.setPlayer(player);
 
-  handleMapFile(loadTileMapJSON(), drawer);
+  handleMapFile(tilemapDataJSON, drawer);
 
 
 }
 
 function draw() {
-
+  game.drawer.draw();
 
 }
 
@@ -42,21 +40,21 @@ function keyPressed()
   {
     console.log("Pressing left");
     game.player.addForce({
-      vector: [0,-1],
+      vector: [300,0],
     });
   }
   else if(keyCode === 73 || keyCode === 38) // moving up
   {
     console.log("Pressing up");
     game.player.addForce({
-      vector: [1,0],
+      vector: [0,-1000],
     });
   }
   else if (keyCode === 76 || keyCode === 39) // moving right
   {
     console.log("Pressing right");
     game.player.addForce({
-      vector: [0,1],
+      vector: [-300,0],
     });
   }
   else if (keyCode === 75 || keyCode === 40) // moving down
@@ -96,10 +94,12 @@ function preload() {
 
 function handleMapFile(mapFileData, drawer) {
   //create background
-  const backgroundLayer = createGraphics();
+  const backgroundLayer = createGraphics(3000, 1200);
+
+  // new GameObject(game, game.createBoxBody());
 
   //create foreground
-  const foregroundLayer = createGraphics();
+  const foregroundLayer = createGraphics(3000, 1200);
 
   const backgroundLastLayer = 3;
 
@@ -107,7 +107,7 @@ function handleMapFile(mapFileData, drawer) {
 
   for (let i = 0; i < mapFileData.layers.length; i++) {
     //background
-    const cLayer = mapFileData.layers[j];
+    const cLayer = mapFileData.layers[i];
     for (let k = 0; k < cLayer.data.length; k++) {
       // add tile to world
 
@@ -115,7 +115,10 @@ function handleMapFile(mapFileData, drawer) {
       // render image on background
       // get tileset
 
-      const cData = cLayer.data[k];
+      let cData = cLayer.data[k] -1;
+      if (cData == -1) {
+        continue;
+      }
 
       const tilesetColumns = tileset.columns;
 
@@ -131,11 +134,25 @@ function handleMapFile(mapFileData, drawer) {
         chosenLayer = foregroundLayer;
 
       }
+      if (cData == 18 || cData == 11) {
+        new GameObject(game, game.createBoxBody({posx:(k % mapWidth) , posy: floor(k / mapWidth) , bodyType: 1, mass:0}))
+        console.log("created gameObj at: ", (k % mapWidth), floor(k / mapWidth) );
+      }
+
+
+      // if (i == 0 && k == 0) {
+      //   console.log(  (k % mapWidth) * tileWidth, floor(k / mapWidth) * tileWidth, //dx, dy
+      //     tileWidth, tileHeight, // dW, dH
+      //     (cData % tilesetColumns) * tileWidth, // sx
+      //     floor(cData / tilesetColumns) * tileWidth, // sy
+      //     tileWidth, tileHeight);
+      // }
+
       chosenLayer.image(tileImg, //img
-        k % mapWidth, floor(k / mapWidth), //dx, dy
-        tileWidth, tileHeight, // dW, dH
-        (cData % tilesetColumns) * tileWidth, // sx
-        floor(cData / tilesetColumns) * tileWidth, // sy
+        (k % mapWidth) * tileWidth, floor(k / mapWidth) * tileWidth, //dx, dy
+        tileWidth+1, tileHeight+1, // dW, dH
+        ((cData % tilesetColumns) * tileWidth) , // sx
+        (floor(cData / tilesetColumns) * tileWidth) , // sy
         tileWidth, tileHeight // sw, sh
       )
 

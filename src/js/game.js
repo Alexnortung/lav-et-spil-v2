@@ -11,7 +11,7 @@ class Game {
 
     // Inititalizes the world
     this.world = new p2.World ({
-      gravity: [0, -9.82],
+      gravity: [0, 9.82],
     });
 
 
@@ -25,7 +25,7 @@ class Game {
       bodyType: 0,
     });
 
-    let testGO = new GameObject(this, testBody);
+    // let testGO = new GameObject(this, testBody);
 
     // Creating a ground for the whole game
     var groundShape = new p2.Plane({
@@ -39,7 +39,7 @@ class Game {
     // Setting the game init and fps cycle
     setInterval(()=>{
         this.world.step(timestep);
-        console.log(testGO.body.position);
+        //console.log(testGO.body.position);
     }, 1000 * timestep);
 
   }
