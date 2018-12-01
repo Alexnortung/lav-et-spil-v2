@@ -81,7 +81,7 @@ class Game {
     });
     var collider = null;
 
-    if(this.hasCollider)
+    if(hasCollider)
     {
       collider = new p2.Box({
         width: width,
